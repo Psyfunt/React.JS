@@ -1,0 +1,12 @@
+.message {
+    color: aquamarine;
+    margin: 0;
+
+}
+.messageDiv {
+    border: 5px solid darkgreen;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 0 auto;
+
+}
