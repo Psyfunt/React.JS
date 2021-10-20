@@ -1,7 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
+import Message from "./Message";
 
-function App() {
+function App(props) {
   return (
     <div className="App">
       <header className="App-header">
@@ -14,10 +15,11 @@ function App() {
           href="https://reactjs.org"
           target="_blank"
           rel="noopener noreferrer"
-        >
-          Learn React!!!!!!
+        >Link
         </a>
+        <Message message={props.message}/>
       </header>
+
     </div>
   );
 }

@@ -4,9 +4,12 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+
+const message = 'Привет))) Пропсы работают';
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App message={message} />
   </React.StrictMode>,
   document.getElementById('root')
 );

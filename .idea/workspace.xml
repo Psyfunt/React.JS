@@ -1,16 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0480b926-d98e-43dc-bec6-df4e6c1b165f" name="Changes" comment="Создал реакт приложение">
+    <list default="true" id="0480b926-d98e-43dc-bec6-df4e6c1b165f" name="Changes" comment="Создал ветку с домашним заданием номер 1">
+      <change afterPath="$PROJECT_DIR$/my-first-app/src/Message.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-first-app/src/Message.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-first-app/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/my-first-app/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my-first-app/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-first-app/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-first-app/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-first-app/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="SCSS File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1zaujFKZhtnPy2bHvXqvujDYabR" />
@@ -23,7 +40,9 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -34,7 +53,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1634398665905</updated>
-      <workItem from="1634398706369" duration="2411000" />
+      <workItem from="1634398706369" duration="3975000" />
+      <workItem from="1634477191869" duration="4600000" />
     </task>
     <task id="LOCAL-00001" summary="Создал реакт приложение">
       <created>1634400891454</created>
@@ -43,7 +63,21 @@
       <option name="project" value="LOCAL" />
       <updated>1634400891454</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Подредактировал App.js">
+      <created>1634401252927</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1634401252927</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Создал ветку с домашним заданием номер 1">
+      <created>1634402396197</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1634402396197</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -59,9 +93,12 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Создал реакт приложение" />
-    <option name="LAST_COMMIT_MESSAGE" value="Создал реакт приложение" />
+    <MESSAGE value="Подредактировал App.js" />
+    <MESSAGE value="Создал ветку с домашним заданием номер 1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Создал ветку с домашним заданием номер 1" />
   </component>
 </project>
