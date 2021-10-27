@@ -1,10 +1,10 @@
 import React from 'react';
-import './Message.css';
+import './Message.scss';
 
-function Message(props) {
+function Message({message}) {
     return (
         <div className="messageDiv">
-        <p className="message">{props.message}</p>
+        <p className="message">{message}</p>
         </div>
     );
 }
