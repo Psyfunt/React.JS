@@ -1,8 +1,8 @@
 import logo from './logo.svg';
-import './App.css';
+import './App.scss';
 import Message from "./Message";
 
-function App(props) {
+function App({message}) {
   return (
     <div className="App">
       <header className="App-header">
@@ -17,7 +17,7 @@ function App(props) {
           rel="noopener noreferrer"
         >Link
         </a>
-        <Message message={props.message}/>
+        <Message message={message}/>
       </header>
 
     </div>
