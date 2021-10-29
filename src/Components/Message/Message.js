@@ -1,4 +1,4 @@
-import './Messages.scss';
+import './Message.scss';
 
 export const Message = ({messageList}) => {
     return (
