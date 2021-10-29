@@ -15,36 +15,31 @@ ul li{list-style: none;}
 img{vertical-align: top;}
 h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: inherit;}
 
-.App {
+
+
+.message {
+
+    border: 1px solid wheat;
+    border-radius: 20px;
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 20px;
+    background: linear-gradient(wheat, grey);
+
+
 
 }
-
-
-.App-wrapper {
-  width: 50%;
-  margin: 0 auto;
-  padding: 50px;
-  border: 1px solid wheat;
-  border-radius: 20px;
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.message-author {
+    color: chocolate;
+    font-size: 20px;
+    padding-bottom: 15px;
 }
-.App-wrapper > h1 {
-  margin: 0 auto;
-  margin-bottom: 30px;
+.message-text{
+    color: lightgrey;
+    width: 100%;
+    overflow: hidden;
+    word-break: break-all;
+    padding-left: 10px;
+    padding-bottom: 10px;
+
 }
-
-.message-wrapper {
-align-items: flex-start;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-
