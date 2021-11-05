@@ -1,23 +1,34 @@
-import logo from './logo.svg';
+import Message from "./Components/Message/Message";
+import {useCallback, useEffect, useState} from "react";
+import Form from "./Components/Form/Form";
 import './App.scss';
-import Message from "./Message";
 
-function App({message}) {
+
+export const App = () => {
+  const [messageList, setMessageList] = useState([])
+
+  const handleSetMessage = useCallback( (text, user) => {
+        setMessageList(messageList.concat([{text: text, user: user}]));
+    },[messageList])
+
+  useEffect(() => {
+      if ( messageList.length ===0 || messageList[messageList.length - 1].user === 'User') {
+         let timer = setTimeout(handleSetMessage, 1500, "Привет! Я бот! Чем я могу вам помочь?", "Бот")
+          return () => {
+              clearTimeout(timer)
+          }
+      }
+    }, [messageList, handleSetMessage]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >Link
-        </a>
-        <Message message={message}/>
+      <header className="App-wrapper">
+          <h1>Messenger</h1>
+          <div className='message-wrapper'>
+              <Message messageList={messageList}/>
+          </div>
+
+        <Form handleSetMessage={handleSetMessage}/>
       </header>
 
     </div>

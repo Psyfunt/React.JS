@@ -1,15 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.scss';
 import App from './App';
+import './index.scss';
 
-
-
-const message = 'Привет))) Пропсы работают!';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App message={message} />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

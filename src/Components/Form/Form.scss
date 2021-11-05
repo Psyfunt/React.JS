@@ -15,36 +15,33 @@ ul li{list-style: none;}
 img{vertical-align: top;}
 h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: inherit;}
 
-.App {
-
-}
 
 
-.App-wrapper {
-  width: 50%;
-  margin: 0 auto;
-  padding: 50px;
-  border: 1px solid wheat;
+.message-form {
+  background-color: chocolate;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  padding: 20px;
   border-radius: 20px;
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
-.App-wrapper > h1 {
-  margin: 0 auto;
-  margin-bottom: 30px;
+.message-input{
+  border-radius: 20px;
+  padding: 10px;
+  width: 100%;
+  margin-bottom: 10px;
+
 }
+.send-button{
+  background: linear-gradient(wheat, grey);
+  cursor: pointer;
+  color: #282c34;
+  width: 80%;
+  padding: 10px;
+  border: 1px solid brown;
+  border-radius: 20px;
 
-.message-wrapper {
-align-items: flex-start;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
-
-
