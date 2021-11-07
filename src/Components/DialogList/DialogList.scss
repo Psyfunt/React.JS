@@ -15,38 +15,18 @@ ul li{list-style: none;}
 img{vertical-align: top;}
 h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: inherit;}
 
-.App {
-  display: flex;
-  flex-direction: row;
 
+
+.dialogBox{
+border: 1px solid gray;
+  padding: 10px;
+  height: 100%;
+  margin-top: 50px;
+  margin-left: 50px;
 }
-
-
-.App-wrapper {
-  width: 50%;
-  margin: 0 auto;
-  padding: 50px;
-  border: 1px solid wheat;
-  border-radius: 20px;
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.dialogItem{
+  font-weight: bold;
+  font-size: 30px;
+  cursor: pointer;
+  margin: 20px;
 }
-.App-wrapper > h1 {
-  margin: 0 auto;
-  margin-bottom: 30px;
-}
-
-.message-wrapper {
-align-items: flex-start;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-
