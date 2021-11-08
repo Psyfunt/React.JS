@@ -18,11 +18,18 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: inherit;}
 
 
 .dialogBox{
-border: 1px solid gray;
-  padding: 10px;
-  height: 100%;
-  margin-top: 50px;
-  margin-left: 50px;
+  width: 25%;
+
+  padding: 50px;
+  border: 1px solid wheat;
+  border-radius: 20px;
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
 .dialogItem{
   font-weight: bold;

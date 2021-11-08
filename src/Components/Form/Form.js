@@ -1,11 +1,14 @@
 import React, {useState} from 'react';
 import './Form.scss';
-import {Button, TextField} from "@mui/material";
+import {TextField} from "@mui/material";
 import {useFocus} from "../../Utils/Utils";
+import {useTheme} from "@material-ui/core/styles";
+import {Button} from "@material-ui/core";
 
  export const Form = (props) => {
      const [text, setText] = useState('');
      const [inputRef, setInputFocus] = useFocus();
+     const theme = useTheme();
 
      const handleChange = (e) =>{
          setText(e.target.value);
@@ -31,7 +34,13 @@ import {useFocus} from "../../Utils/Utils";
                        onChange={handleChange}
             />
             <Button
+                    style={{
+                        backgroundColor: theme.palette.primary.main,
+                        borderColor: theme.palette.secondary.main,
+                        fontSize: theme.typography.button,
+                    }}
                     variant="contained"
+                    color="secondary"
                     className='send-button'
                     margin="normal"
                     type="submit">
