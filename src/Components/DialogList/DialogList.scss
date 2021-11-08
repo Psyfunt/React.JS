@@ -15,16 +15,11 @@ ul li{list-style: none;}
 img{vertical-align: top;}
 h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: inherit;}
 
-.App {
-  display: flex;
-  flex-direction: row;
-
-}
 
 
-.App-wrapper {
-  width: 50%;
-  margin: 0 auto;
+.dialogBox{
+  width: 25%;
+
   padding: 50px;
   border: 1px solid wheat;
   border-radius: 20px;
@@ -32,23 +27,13 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: inherit;}
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
   font-size: calc(10px + 2vmin);
   color: white;
 }
-.App-wrapper > h1 {
-  margin: 0 auto;
-  margin-bottom: 30px;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.dialogItem{
+  font-weight: bold;
+  font-size: 30px;
+  cursor: pointer;
+  margin: 20px;
 }
-
-.message-wrapper {
-align-items: flex-start;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-
