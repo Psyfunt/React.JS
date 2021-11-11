@@ -1,13 +1,9 @@
-import './Message.scss';
+import React from "react";
 
-export const Message = ({messageList}) => {
+export const Message = ({ message, onMessageClick }) => {
     return (
-        messageList.map((message) =>
-            <div key={message.id}  className='message'>
-                <h3 className='message-author'>{message.user}:</h3>
-                <p className='message-text' >{message.text}</p>
-            </div>)
+        <h3 onClick={onMessageClick}>
+            {message}
+        </h3>
     );
-}
-
-export default Message;
+};

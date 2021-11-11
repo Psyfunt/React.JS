@@ -33,26 +33,10 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: inherit;}
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
-.navigation {
-  display: flex;
-  justify-content: flex-start;
-  max-width: 30%;
-  padding: 30px;
-
-}
-
-.navigationLink {
-    margin-right: 30px;
-    font-size: 30px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-
 .App-wrapper > h1 {
   margin: 0 auto;
   margin-bottom: 30px;
@@ -61,10 +45,8 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: inherit;}
 }
 
 .message-wrapper {
-align-items: flex-start;
+  align-items: flex-start;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
-

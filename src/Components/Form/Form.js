@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import './Form.scss';
+import { v4 as uuidv4 } from 'uuid';
 import {TextField} from "@mui/material";
-import {useFocus} from "../../Utils/Utils";
+import {AUTHORS, useFocus} from "../../Utils/Utils";
 import {useTheme} from "@material-ui/core/styles";
 import {Button} from "@material-ui/core";
 
@@ -16,7 +17,11 @@ import {Button} from "@material-ui/core";
 
      const handleSubmit = (e) => {
          e.preventDefault();
-         props.handleSetMessage(text, "User")
+         props.handleSetMessage({
+             text: text,
+             author: AUTHORS.human,
+             id: uuidv4(),
+         })
          setText('')
          setInputFocus(inputRef)
      }

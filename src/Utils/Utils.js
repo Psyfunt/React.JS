@@ -8,4 +8,9 @@ export const useFocus = () => {
     return [ htmlElRef, setFocus ]
 }
 
+export const AUTHORS ={
+    human:'human',
+    bot:'bot'
+}
+
 

@@ -1,65 +1,34 @@
-import Message from "./Components/Message/Message";
-import {useCallback, useEffect, useState} from "react";
-import Form from "./Components/Form/Form";
-import { v4 as uuidv4 } from 'uuid';
+import React from 'react'
+import {BrowserRouter, NavLink, Routes, Route} from "react-router-dom";
+import {Dialogs} from "./Components/Chats/Dialogs";
+import {Home} from "./Components/Home/Home";
 import DialogList from "./Components/DialogList/DialogList";
-import './App.scss';
-import {ThemeProvider, createTheme} from "@material-ui/core/styles";
+import './App.scss'
+import {Profile} from "./Components/Profile/Profile";
 
 
-const theme = createTheme({
-    palette: {
-        primary: {
-            main: "#FF9800",
-        },
-        secondary: {
-            main: "#0098FF",
-        },
-    },
-    typography: {
-        button: {
-            fontSize: '1rem',
-            width: '80%'
-        },
-    },
-});
+export const App = () => (
+    <BrowserRouter>
+        <ul className='navigation'>
+            <li>
+                <NavLink className='navigationLink' to='/'>Home</NavLink>
+            </li>
+            <li>
+                <NavLink className='navigationLink' to='/profile'>Profile</NavLink>
+            </li>
+            <li>
+                <NavLink className='navigationLink' to='/dialogs'>Dialogs</NavLink>
+            </li>
+        </ul>
 
-export const App = () => {
-  const [messageList, setMessageList] = useState([])
-  const [dialogs, setDialogs] = useState([
-        {id: uuidv4(), name: 'Dialog 1'},
-        {id: uuidv4(), name: 'Dialog 2'},
-        {id: uuidv4(), name: 'Dialog 3'},
-        {id: uuidv4(), name: 'Dialog 4'}
-  ])
-
-  const handleSetMessage = useCallback( (text, user) => {
-        setMessageList(messageList.concat([{id: uuidv4(), text: text, user: user}]));
-    },[messageList])
-
-  useEffect(() => {
-      if ( !messageList.length || messageList[messageList.length - 1].user === 'User') {
-         let timer = setTimeout(handleSetMessage, 1500, "Привет! Я бот! Чем я могу вам помочь?", "Бот")
-          return () => {
-              clearTimeout(timer)
-          }
-      }
-    }, [messageList, handleSetMessage]);
-
-  return (
-    <ThemeProvider theme={theme}>
-        <div className="App">
-            <DialogList dialogs={dialogs}/>
-            <div className="App-wrapper">
-                <h1>Messenger</h1>
-                <div className='message-wrapper'>
-                    <Message messageList={messageList}/>
-                </div>
-             <Form handleSetMessage={handleSetMessage}/>
-            </div>
-        </div>
-    </ThemeProvider>
-  );
-}
-
-export default App;
+        <Routes>
+            <Route path='/' element={<Home />}/>
+            <Route path='/profile' element={<Profile />}/>
+            <Route path="/dialogs" >
+                <Route index element={<DialogList />} />
+                <Route path=":dialogId" element={<Dialogs />}/>
+            </Route>
+            <Route path="*" element={<h3>404</h3>} />
+        </Routes>
+    </BrowserRouter>
+)
