@@ -1,54 +1,37 @@
 
-import {useCallback, useEffect, useState} from "react";
+import {useCallback, useEffect} from "react";
 import Form from "../Form/Form";
 import { v4 as uuidv4 } from 'uuid';
-import {DialogList} from "../DialogList/DialogList";
-import {Navigate, useParams} from "react-router-dom";
+import {DialogsList} from "../DialogList/DialogsList";
+import { useParams} from "react-router-dom";
 import {AUTHORS} from "../../Utils/Utils";
 import {MessagesList} from "../MessagesList/MessagesList";
 
-const initialMessages = {
-    chat1:[
-        {
-            text:'text1',
-            author: AUTHORS.human,
-            id: uuidv4(),
-        }
-    ],
-    chat2:[
-        {
-            text:'another text',
-            author: AUTHORS.human,
-            id: uuidv4(),
-        }
-    ],
-    chat3:[]
-}
 
 
-export const Dialogs = () => {
+
+export const Dialogs = ({dialogsList, messages, setMessages}) => {
     const { dialogId } = useParams();
-    const [messageList, setMessageList] = useState(initialMessages);
 
 
-
-    const handleSetMessage = useCallback( (newMessage) => {
-        setMessageList((prevMessages) => ({
+    const handleSetMessage = useCallback(
+        (newMessage) => {
+        setMessages((prevMessages) => ({
              ...prevMessages,
              [dialogId]: [...prevMessages[dialogId], newMessage]}));
-    },[dialogId]);
+    },[dialogId, setMessages]);
 
 
     useEffect(() => {
         if (
-            !messageList[dialogId]?.length ||
-            messageList[dialogId]?.[messageList[dialogId]?.length - 1].author === AUTHORS.human) {
+            !messages[dialogId]?.length ||
+            messages[dialogId]?.[messages[dialogId]?.length - 1].author === AUTHORS.human) {
             const timer = setTimeout(
                 () =>
                     handleSetMessage({
                         author: AUTHORS.bot,
                         text:'i am bot',
-                        id: uuidv4(),
+                        id: uuidv4()
                         }
                     ),1500)
             return () => {
@@ -56,19 +39,17 @@ export const Dialogs = () => {
             }
         }
 
-    }, [messageList, handleSetMessage, dialogId]);
+    }, [setMessages, messages, handleSetMessage, dialogId]);
 
-    if (!messageList[dialogId]) {
-        return <Navigate replace to="/" />;
-    }
+
 
     return (
                 <div className="App">
-                    <DialogList />
+                    <DialogsList dialogsList={dialogsList} />
                     <div className="App-wrapper">
                         <h1>Messenger</h1>
                         <div className='message-wrapper'>
-                            <MessagesList messages={messageList[dialogId]} />
+                            <MessagesList messages={messages[dialogId]} />
                         </div>
                         <Form handleSetMessage={handleSetMessage}/>
                     </div>

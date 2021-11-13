@@ -1,13 +1,65 @@
-import React from 'react'
+import React, {useCallback, useState} from 'react'
 import {BrowserRouter, NavLink, Routes, Route} from "react-router-dom";
 import {Dialogs} from "./Components/Chats/Dialogs";
 import {Home} from "./Components/Home/Home";
-import DialogList from "./Components/DialogList/DialogList";
+import DialogsList from "./Components/DialogList/DialogsList";
 import './App.scss'
 import {Profile} from "./Components/Profile/Profile";
+import {Provider} from "react-redux";
+import { v4 as uuidv4 } from 'uuid';
+import {store} from "./Store";
+import {AUTHORS} from "./Utils/Utils";
+
+const initialDialogList = [
+    {
+        name: 'chat1',
+        id: "dialog1"
+    },
+    {
+        name: 'chat2',
+        id: "dialog2"
+    },
+    {
+        name: 'chat3',
+        id: "dialog3"
+    }
+]
+
+const initialMessages = {
+    dialog1:[
+        {
+            text:'text1',
+            author: AUTHORS.human,
+            id: uuidv4()
+
+        }
+    ],
+    dialog2:[
+        {
+            text:'another text',
+            author: AUTHORS.human,
+            id: uuidv4()
+
+        }
+    ],
+    dialog3:[]
+}
 
 
-export const App = () => (
+export const App = () => {
+
+    const [color, setColor] = useState("blue");
+
+    const [dialogsList, setDialogList] = useState(initialDialogList);
+    const [messages, setMessages] = useState(initialMessages);
+
+    const handleToggleColor = useCallback(() => {
+        setColor((prevColor) => (prevColor === "blue" ? "red" : "blue"));
+    }, []);
+
+
+    return (
+    <Provider store={store}>
     <BrowserRouter>
         <ul className='navigation'>
             <li>
@@ -23,12 +75,24 @@ export const App = () => (
 
         <Routes>
             <Route path='/' element={<Home />}/>
-            <Route path='/profile' element={<Profile />}/>
-            <Route path="/dialogs" >
-                <Route index element={<DialogList />} />
-                <Route path=":dialogId" element={<Dialogs />}/>
+            <Route path='profile' element={<Profile />}/>
+            <Route path="dialogs" >
+                <Route index element={<DialogsList dialogsList={dialogsList} />} />
+                <Route
+                    path=":dialogId"
+                    element={
+                        <Dialogs
+                            dialogsList={dialogsList}
+                            setDialogList={setDialogList}
+                            messages={messages}
+                            setMessages={setMessages}
+                        />
+                       }
+                />
             </Route>
             <Route path="*" element={<h3>404</h3>} />
         </Routes>
     </BrowserRouter>
-)
+    </Provider>
+);
+};
