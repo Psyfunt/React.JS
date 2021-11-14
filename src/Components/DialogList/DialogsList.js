@@ -1,24 +1,17 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './DialogList.scss';
 import {NavLink} from "react-router-dom";
 import {TextField} from "@mui/material";
 import { v4 as uuidv4 } from 'uuid';
 
-
-
-
- export const DialogsList = ({dialogsList, setDialogList}) => {
-
+ export const DialogsList = ({dialogsList, handleSetDialogList}) => {
      const [value, setValue] = useState('')
-
-     const handleSetDialogList = (newDialog) =>{
-         setDialogList((prevDialogsList)=>([...prevDialogsList, {name:value, id: uuidv4()} ]))
-     }
-
      const handleChange = (e) =>{
          setValue(e.target.value);
      }
-
+     const AddDialog = ({value}) => {
+         handleSetDialogList(value)
+     }
      return (
          <div>
              <h1>Dialogs List</h1>
@@ -35,7 +28,7 @@ import { v4 as uuidv4 } from 'uuid';
                  ))}
              </ul>
              <TextField value={value} onChange={handleChange} />
-             <button onClick={handleSetDialogList}>Add chat</button>
+             <button onClick={(value)=>{AddDialog(value)}}>Add dialog</button>
          </div>
      )
  }

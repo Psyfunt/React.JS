@@ -8,12 +8,8 @@ import {AUTHORS} from "../../Utils/Utils";
 import {MessagesList} from "../MessagesList/MessagesList";
 
 
-
-
 export const Dialogs = ({dialogsList, messages, setMessages}) => {
     const { dialogId } = useParams();
-
-
     const handleSetMessage = useCallback(
         (newMessage) => {
         setMessages((prevMessages) => ({
@@ -41,11 +37,9 @@ export const Dialogs = ({dialogsList, messages, setMessages}) => {
 
     }, [setMessages, messages, handleSetMessage, dialogId]);
 
-
-
     return (
                 <div className="App">
-                    <DialogsList dialogsList={dialogsList} />
+                    <DialogsList dialogsList={dialogsList}  />
                     <div className="App-wrapper">
                         <h1>Messenger</h1>
                         <div className='message-wrapper'>

@@ -1,6 +1,6 @@
 import React, {useCallback, useState} from 'react'
-import {BrowserRouter, NavLink, Routes, Route} from "react-router-dom";
-import {Dialogs} from "./Components/Chats/Dialogs";
+import {BrowserRouter, NavLink, Routes, Route, useParams} from "react-router-dom";
+import {Dialogs} from "./Components/Dialogs/Dialogs";
 import {Home} from "./Components/Home/Home";
 import DialogsList from "./Components/DialogList/DialogsList";
 import './App.scss'
@@ -45,9 +45,8 @@ const initialMessages = {
     dialog3:[]
 }
 
-
 export const App = () => {
-
+    const { dialogId } = useParams();
     const [color, setColor] = useState("blue");
 
     const [dialogsList, setDialogList] = useState(initialDialogList);
@@ -57,7 +56,15 @@ export const App = () => {
         setColor((prevColor) => (prevColor === "blue" ? "red" : "blue"));
     }, []);
 
+    const handleSetDialogList = useCallback( (value) => {
+        setDialogList((prevDialogsList)=>(
+            [...prevDialogsList, {value:value, id: uuidv4()} ]))
+    }, [])
 
+    // const handleSetDialogList = useCallback(
+    //     (newDialog) => {
+    //         setDialogList(dialogsList.concat(newDialog))
+    //     },[]);
     return (
     <Provider store={store}>
     <BrowserRouter>
@@ -77,7 +84,11 @@ export const App = () => {
             <Route path='/' element={<Home />}/>
             <Route path='profile' element={<Profile />}/>
             <Route path="dialogs" >
-                <Route index element={<DialogsList dialogsList={dialogsList} />} />
+                <Route index element={
+                    <DialogsList
+                        dialogsList={dialogsList}
+                        handleSetDialogList={handleSetDialogList}
+                    />} />
                 <Route
                     path=":dialogId"
                     element={
