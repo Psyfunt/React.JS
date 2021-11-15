@@ -63,12 +63,7 @@ export const App = () => {
 
     }, [dialogId])
 
-    // const handleSetMessage = useCallback(
-    //     (newMessage) => {
-    //         setMessages((prevMessages) => ({
-    //             ...prevMessages,
-    //             [dialogId]: [...prevMessages[dialogId], newMessage]}));
-    //     },[dialogId, setMessages]);
+
 
 
     const handleDeleteDialog = useCallback((id)=>{
