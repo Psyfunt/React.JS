@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react'
+import React, {useCallback, useEffect, useState} from 'react'
 import {BrowserRouter, NavLink, Routes, Route, useParams} from "react-router-dom";
 import {Dialogs} from "./Components/Dialogs/Dialogs";
 import {Home} from "./Components/Home/Home";
@@ -58,13 +58,32 @@ export const App = () => {
 
     const handleSetDialogList = useCallback( (value) => {
         setDialogList((prevDialogsList)=>(
-            [...prevDialogsList, {value:value, id: uuidv4()} ]))
-    }, [])
+            [...prevDialogsList, {name:value, id: uuidv4()} ]
+        ))
 
-    // const handleSetDialogList = useCallback(
-    //     (newDialog) => {
-    //         setDialogList(dialogsList.concat(newDialog))
-    //     },[]);
+    }, [dialogId])
+
+    // const handleSetMessage = useCallback(
+    //     (newMessage) => {
+    //         setMessages((prevMessages) => ({
+    //             ...prevMessages,
+    //             [dialogId]: [...prevMessages[dialogId], newMessage]}));
+    //     },[dialogId, setMessages]);
+
+
+    const handleDeleteDialog = useCallback((id)=>{
+        setDialogList((prevDialogsList)=>(
+            prevDialogsList.filter((item) => item.id !== id)
+        ))
+    },[])
+
+
+
+    useEffect(()=>{
+        console.log(messages)
+        console.log(dialogsList)
+    },[dialogsList,messages])
+
     return (
     <Provider store={store}>
     <BrowserRouter>
@@ -87,7 +106,7 @@ export const App = () => {
                 <Route index element={
                     <DialogsList
                         dialogsList={dialogsList}
-                        handleSetDialogList={handleSetDialogList}
+                        handleDeleteDialog={handleDeleteDialog}
                     />} />
                 <Route
                     path=":dialogId"
@@ -97,6 +116,8 @@ export const App = () => {
                             setDialogList={setDialogList}
                             messages={messages}
                             setMessages={setMessages}
+                            handleSetDialogList={handleSetDialogList}
+                            handleDeleteDialog={handleDeleteDialog}
                         />
                        }
                 />

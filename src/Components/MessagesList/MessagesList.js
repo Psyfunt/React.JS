@@ -6,7 +6,6 @@ export const MessagesList = ({ messages }) => {
     useEffect(() => {
         console.log(messages);
 
-        return () => console.log("messageList will unmount");
     }, [messages]);
 
     return (
