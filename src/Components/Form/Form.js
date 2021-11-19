@@ -6,7 +6,7 @@ import {AUTHORS, useFocus} from "../../Utils/Utils";
 import {useTheme} from "@material-ui/core/styles";
 import {Button} from "@material-ui/core";
 
- export const Form = (props) => {
+ export const Form = ({handleSetMessage}) => {
      const [text, setText] = useState('');
      const [inputRef, setInputFocus] = useFocus();
      const theme = useTheme();
@@ -17,13 +17,18 @@ import {Button} from "@material-ui/core";
 
      const handleSubmit = (e) => {
          e.preventDefault();
-         props.handleSetMessage({
+         handleSetMessage({
              text: text,
              author: AUTHORS.human,
              id: uuidv4(),
          })
+         // props.handleAddMessage({
+         //     text: text,
+         //     author: AUTHORS.human,
+         //     id: uuidv4(),})
          setText('')
-         setInputFocus(inputRef)
+         setInputFocus(inputRef);
+         setText("")
      }
 
      return (

@@ -1,38 +1,42 @@
-import React, {useEffect, useState} from 'react';
-import './DialogList.scss';
-import {NavLink} from "react-router-dom";
+import React, { useState } from 'react';
 import {TextField} from "@mui/material";
 import { v4 as uuidv4 } from 'uuid';
+import {DialogItem} from "../DialogItem/DialogItem";
+import {addDialog} from "../../Store/Dialogs/actions";
+import {useDispatch, useSelector} from "react-redux";
+import {selectDialogs} from "../../Store/Dialogs/selectors";
+import './DialogList.scss';
 
- export const DialogsList = ({dialogsList, handleSetDialogList, handleDeleteDialog}) => {
+ export const DialogsList = () => {
+     const dialogsList = useSelector(selectDialogs);
+     const dispatch = useDispatch();
      const [value, setValue] = useState('')
+
      const handleChange = (e) =>{
          setValue(e.target.value);
      }
-     const addDialog = () =>{handleSetDialogList(value)}
+     const handleSubmit = (e) => {
+         e.preventDefault();
+         const newId = uuidv4();
+         dispatch(addDialog({ name: value, id: newId }));
+         setValue("");
+     };
 
-     const deleteDialog = (e) =>{
-         handleDeleteDialog(e.target.parentElement.dataset.id)
-     }
 
      return (
          <div>
              <h1>Dialogs List</h1>
              <ul>
                  {dialogsList.map((dialog) => (
-                     <>
-                     <li key={dialog.id} data-id={dialog.id}>
-                         <NavLink style={({isActive}) =>({ color: isActive ? "red" : "blue"})}
-                                  to={`/dialogs/${dialog.id}`}>{dialog.name}
-                         </NavLink>
-                         <button onClick={deleteDialog}>delete</button>
+                     <li key={dialog.id}>
+                         <DialogItem dialog={dialog} />
                      </li>
-
-                     </>
                  ))}
              </ul>
-             <TextField value={value} onChange={handleChange} />
-             <button onClick={addDialog}>Add dialog</button>
+             <form onSubmit={handleSubmit}>
+                <TextField value={value} onChange={handleChange} />
+                <button type='submit'>Add dialog</button>
+             </form>
          </div>
      )
  }
