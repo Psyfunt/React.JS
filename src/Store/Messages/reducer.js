@@ -17,8 +17,7 @@ export const messagesReducer = (state = initialMessages, { payload, type }) => {
             );
 
             return newMessages;
-        }
-
+        };
         case ADD_DIALOG:
             return {
                 ...state,

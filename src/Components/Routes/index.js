@@ -4,7 +4,7 @@ import {Home} from "../Home/Home";
 import {ConnectedProfile} from "../Profile/Profile";
 import DialogsList from "../DialogList/DialogsList";
 import React from "react";
-import {ConnectedDialogs} from "../Dialogs/Dialogs";
+import Dialogs from "../Dialogs/Dialogs";
 
 export const Router = () => (
     <BrowserRouter>
@@ -27,7 +27,7 @@ export const Router = () => (
                 <Route index element={<DialogsList/>} />
                 <Route
                     path=":dialogId"
-                    element={<ConnectedDialogs/>}
+                    element={<Dialogs/>}
                 />
             </Route>
             <Route path="*" element={<h3>404</h3>} />

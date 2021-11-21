@@ -7,7 +7,7 @@ export const dialogsReducer = (state = initialDialogs, action) => {
         case ADD_DIALOG:
             return [...state, action.payload];
         case DELETE_DIALOG:
-            return state.filter(({ id }) => id !== action.payload);
+            return state.filter(({ id }) => id !== action.payload.dialogId);
         default:
             return state;
     }

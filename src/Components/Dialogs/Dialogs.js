@@ -6,13 +6,14 @@ import {DialogsList} from "../DialogList/DialogsList";
 import {Navigate, useParams} from "react-router-dom";
 import {AUTHORS} from "../../Utils/Utils";
 import {MessagesList} from "../MessagesList/MessagesList";
-import {connect, useDispatch} from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import {addMessage} from "../../Store/Messages/actions";
+import {selectMessages} from "../../Store/Messages/selectors";
 
 
-export const Dialogs = ({setMessages, messages}) => {
+function Dialogs() {
     const { dialogId } = useParams();
-    //const messages = useSelector(selectMessages);
+    const messages = useSelector(selectMessages);
     const dispatch = useDispatch();
 
 
@@ -51,7 +52,7 @@ export const Dialogs = ({setMessages, messages}) => {
                     <div className="App-wrapper">
                         <h1>Messenger</h1>
                         <div className='message-wrapper'>
-                            <MessagesList dialogId={dialogId}  messages={messages[dialogId]} />
+                            <MessagesList   messages={messages[dialogId]} />
                         </div>
                         <Form  handleSetMessage={handleSetMessage}/>
                     </div>
@@ -62,15 +63,15 @@ export const Dialogs = ({setMessages, messages}) => {
 
 export default Dialogs;
 
-const mapStateToProps = (state) => ({
-    messages: state.messages,
-});
-
-const mapDispatchToProps = {
-    setMessage: addMessage,
-};
-
-export const ConnectedDialogs = connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Dialogs);
+// const mapStateToProps = (state) => ({
+//     messages: state.messages,
+// });
+//
+// const mapDispatchToProps = {
+//     setMessage: addMessage,
+// };
+//
+// export const ConnectedDialogs = connect(
+//     mapStateToProps,
+//     mapDispatchToProps
+// )(Dialogs);
