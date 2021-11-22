@@ -2,9 +2,9 @@ import React from "react";
 import {useDispatch} from "react-redux";
 import {deleteMessage} from "../../Store/Messages/actions";
 
-export const MessageItem = ({ message,dialogId }) => {
+export const MessageItem = ({ message, dialogId }) => {
     const dispatch = useDispatch()
-    const handleDeleteButton = (message) =>{
+    const handleDeleteButton = () =>{
         dispatch(deleteMessage(dialogId, message.id))
     }
     return (

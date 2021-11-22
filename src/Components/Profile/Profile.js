@@ -22,6 +22,7 @@ export const Profile = ({ checkboxValue, setName, changeChecked }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setName(value)
         setValue('')
     }
 

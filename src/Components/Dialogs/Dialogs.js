@@ -1,13 +1,11 @@
 
-import {useCallback, useEffect} from "react";
+import {useCallback} from "react";
 import Form from "../Form/Form";
-import { v4 as uuidv4 } from 'uuid';
 import {DialogsList} from "../DialogList/DialogsList";
 import {Navigate, useParams} from "react-router-dom";
-import {AUTHORS} from "../../Utils/Utils";
 import {MessagesList} from "../MessagesList/MessagesList";
 import { useDispatch, useSelector} from "react-redux";
-import {addMessage} from "../../Store/Messages/actions";
+import {addMessageWithReply} from "../../Store/Messages/actions";
 import {selectMessages} from "../../Store/Messages/selectors";
 
 
@@ -19,28 +17,9 @@ function Dialogs() {
 
     const handleSetMessage = useCallback(
         (newMessage) => {
-        dispatch(addMessage(dialogId, newMessage))
+        dispatch(addMessageWithReply(dialogId, newMessage))
     },[dialogId, dispatch]);
 
-
-    useEffect(() => {
-        if (
-            !messages[dialogId]?.length ||
-            messages[dialogId]?.[messages[dialogId]?.length - 1].author === AUTHORS.human) {
-            const timer = setTimeout(
-                () =>
-                    handleSetMessage({
-                        author: AUTHORS.bot,
-                        text:'i am bot',
-                        id: uuidv4()
-                        }
-                    ),1500)
-            return () => {
-                clearTimeout(timer)
-            }
-        }
-
-    }, [ messages, dialogId , handleSetMessage]);
 
     if (!messages[dialogId]) {
         return <Navigate replace to="/dialogs" />;
@@ -52,7 +31,7 @@ function Dialogs() {
                     <div className="App-wrapper">
                         <h1>Messenger</h1>
                         <div className='message-wrapper'>
-                            <MessagesList   messages={messages[dialogId]} />
+                            <MessagesList dialogId={dialogId}   messages={messages[dialogId]} />
                         </div>
                         <Form  handleSetMessage={handleSetMessage}/>
                     </div>
