@@ -1,8 +1,11 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import './MessagesList.scss'
+import {MessageItem} from "../Message/MessageItem";
 
 
-export const MessagesList = ({ messages }) => {
+
+export const MessagesList = ({messages , dialogId}) => {
+
     useEffect(() => {
         console.log(messages);
 
@@ -10,10 +13,8 @@ export const MessagesList = ({ messages }) => {
 
     return (
         messages.map((message) =>
-            <div key={message.id}  className='message'>
-                <h3 className='message-author'>{message.author}:</h3>
-                <p className='message-text' >{message.text}</p>
-            </div>)
+            <MessageItem dialogId={dialogId} message={message} />
+        )
     );
 }
 
