@@ -5,12 +5,16 @@ import {ConnectedProfile} from "../Profile/Profile";
 import DialogsList from "../DialogList/DialogsList";
 import React from "react";
 import Dialogs from "../Dialogs/Dialogs";
+import {Articles} from "../Articles/Articles";
 
 export const Router = () => (
     <BrowserRouter>
         <ul className='navigation'>
             <li>
                 <NavLink className='navigationLink' to='/'>Home</NavLink>
+            </li>
+            <li>
+                <NavLink className='navigationLink' to='/articles'>Articles</NavLink>
             </li>
             <li>
                 <NavLink className='navigationLink' to='/profile'>Profile</NavLink>
@@ -23,6 +27,7 @@ export const Router = () => (
         <Routes>
             <Route path='/' element={<Home />}/>
             <Route path='profile' element={<ConnectedProfile />}/>
+            <Route path="articles" element={<Articles />} />
             <Route path="dialogs" >
                 <Route index element={<DialogsList/>} />
                 <Route
