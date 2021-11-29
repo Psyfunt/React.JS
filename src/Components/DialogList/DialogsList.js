@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
-import {TextField} from "@mui/material";
+import { TextField } from "@mui/material";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from 'uuid';
+import {
+    addDialogWithFb,
+    initDialogsTracking,
+} from "../../Store/Dialogs/actions";
+import { selectDialogs } from "../../Store/Dialogs/selectors";
 import {DialogItem} from "../DialogItem/DialogItem";
-import {addDialog} from "../../Store/Dialogs/actions";
-import {useDispatch, useSelector} from "react-redux";
-import {selectDialogs} from "../../Store/Dialogs/selectors";
 import './DialogList.scss';
 
  export const DialogsList = () => {
@@ -12,13 +15,19 @@ import './DialogList.scss';
      const dispatch = useDispatch();
      const [value, setValue] = useState('')
 
+     useEffect(() => {
+         dispatch(initDialogsTracking());
+     }, [dispatch]);
+
      const handleChange = (e) =>{
          setValue(e.target.value);
      }
      const handleSubmit = (e) => {
          e.preventDefault();
          const newId = uuidv4();
-         dispatch(addDialog({ name: value, id: newId }));
+         // dispatch(addDialog({ name: value, id: newId }));
+         // setValue("");
+         dispatch(addDialogWithFb({ name: value, id: newId }));
          setValue("");
      };
 

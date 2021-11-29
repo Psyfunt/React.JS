@@ -1,43 +1,64 @@
-import React, {useState} from "react";
-import {useSelector, shallowEqual, connect} from "react-redux";
-import '../../Store/Profile/actions'
-import {changeName, toggleCheckbox} from "../../Store/Profile/actions";
-import {selectName} from "../../Store/Profile/selectors";
+import React, { useCallback, useEffect, useState } from "react";
+import { useSelector, useDispatch, connect, shallowEqual } from "react-redux";
+import { onValue, set } from "firebase/database";
 
+import { logOut, userRef } from "../../Services/firebase";
+import {
+    changeName,
+    signOut,
+    toggleCheckbox,
+} from "../../Store/Profile/actions";
+import { selectName } from "../../Store/Profile/selectors";
 
 export const Profile = ({ checkboxValue, setName, changeChecked }) => {
-
+    // console.log(props);
+    // const checkboxValue = useSelector((state) => state.checkbox);
     const name = useSelector(selectName, shallowEqual);
     const [value, setValue] = useState(name);
+    // const dispatch = useDispatch();
 
+    useEffect(() => {
+        const unsubscribe = onValue(userRef, (snapshot) => {
+            const userData = snapshot.val();
+            setName(userData?.name || "");
+        });
 
+        return unsubscribe;
+    }, [setName]);
 
-    const handleChangeText =(e) =>{
-        setValue(e.target.value)
-    }
+    const handleChangeText = (e) => {
+        setValue(e.target.value);
+    };
+
     const handleChange = () => {
-        console.log('------');
+        console.log("------");
         changeChecked();
-    }
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setName(value)
-        setValue('')
-    }
+        set(userRef, {
+            name: value,
+        });
+    };
 
-
-
+    const handleLogOutClick = async () => {
+        try {
+            await logOut();
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
     return (
         <>
             <h3>Profile</h3>
             <input type="checkbox" checked={checkboxValue} onChange={handleChange} />
-            <span>{name}</span>
             <form onSubmit={handleSubmit}>
-                <input type="text" value={value} onChange={handleChangeText}/>
-                <input type="submit"/>
+                <input type="text" value={value} onChange={handleChangeText} />
+                <input type="submit" />
             </form>
+            <button onClick={handleLogOutClick}>SIGN OUT</button>
         </>
     );
 };
@@ -50,7 +71,12 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     changeChecked: () => dispatch(toggleCheckbox),
     setName: (newName) => dispatch(changeName(newName)),
+    // logOut: () => dispatch(signOut()),
 });
+
+const mapDispatchToProps2 = {
+    setName: changeName,
+};
 
 export const ConnectedProfile = connect(
     mapStateToProps,
