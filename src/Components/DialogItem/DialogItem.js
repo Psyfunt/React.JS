@@ -1,13 +1,13 @@
 import { ListItem } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import '../DialogList/DialogList.scss';
-import {deleteDialog} from "../../Store/Dialogs/actions";
+import {deleteDialog, removeDialogWithFb} from "../../Store/Dialogs/actions";
 import {useDispatch} from "react-redux";
 
 export const DialogItem = ({ dialog }) => {
     const dispatch = useDispatch();
     const handleDeleteClick = () => {
-        dispatch(deleteDialog(dialog.id));
+        dispatch(removeDialogWithFb(dialog));
     };
 
     return (

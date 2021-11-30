@@ -4,7 +4,7 @@ import {MessageItem} from "../Message/MessageItem";
 
 
 
-export const MessagesList = ({messages , dialogId}) => {
+export const MessagesList = ({msgs, messages , dialogId}) => {
 
     useEffect(() => {
         console.log(messages);
@@ -12,8 +12,8 @@ export const MessagesList = ({messages , dialogId}) => {
     }, [messages]);
 
     return (
-        messages.map((message) =>
-            <MessageItem dialogId={dialogId} message={message} />
+        msgs.map((message) =>
+            <MessageItem key={message.id} dialogId={dialogId} message={message} />
         )
     );
 }

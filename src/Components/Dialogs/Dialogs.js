@@ -22,7 +22,7 @@ function Dialogs({msgs, sendMessage}) {
         (newMessage) => {
         // dispatch(addMessageWithReply(dialogId, newMessage))
             push(getDialogMsgsListRefById(dialogId), newMessage);
-    },[dialogId, sendMessage]);
+    },[dialogId]);
 
 
     if (!msgs[dialogId]) {
@@ -35,7 +35,7 @@ function Dialogs({msgs, sendMessage}) {
                     <div className="App-wrapper">
                         <h1>Messenger</h1>
                         <div className='message-wrapper'>
-                            <MessagesList dialogId={dialogId}   messages={msgs[dialogId]} />
+                            <MessagesList dialogId={dialogId}   msgs={msgs[dialogId]} />
                         </div>
                         <Form  handleSetMessage={handleSetMessage}/>
                     </div>
@@ -45,16 +45,16 @@ function Dialogs({msgs, sendMessage}) {
 
 
 export default Dialogs;
-
-const mapStateToProps = (state) => ({
-    messages: state.messages,
-});
-
-const mapDispatchToProps = {
-    setMessage: addMessage,
-};
-
-export const ConnectedDialogs = connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Dialogs);
+//
+// const mapStateToProps = (state) => ({
+//     messages: state.messages,
+// });
+//
+// const mapDispatchToProps = {
+//     setMessage: addMessage,
+// };
+//
+// export const ConnectedDialogs = connect(
+//     mapStateToProps,
+//     mapDispatchToProps
+// )(Dialogs);

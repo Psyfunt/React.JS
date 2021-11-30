@@ -14,6 +14,7 @@ import { ConnectedProfile } from "../Profile/Profile";
 import { PublicOutlet, PublicRoute } from "../PublicRoute/PublicRoute";
 import { SignUp } from "../SingUp/SingUp";
 import './Routes.scss'
+import Dialogs from "../Dialogs/Dialogs";
 
 export const Router = () => {
     const dispatch = useDispatch();
@@ -29,7 +30,7 @@ export const Router = () => {
         });
 
         return () => unsubscribe();
-    }, []);
+    }, [dispatch]);
 
     useEffect(() => {
         onValue(messagesRef, (snapshot) => {
@@ -91,7 +92,7 @@ export const Router = () => {
                         path=":dialogId"
                         element={
                             <PrivateRoute>
-                                <ConnectedDialogs msgs={msgs} />
+                                <Dialogs msgs={msgs} />
                             </PrivateRoute>
                         }
                     />

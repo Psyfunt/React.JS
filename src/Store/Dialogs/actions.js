@@ -26,6 +26,10 @@ export const addDialogWithFb = (newDialog) => (dispatch) => {
     set(getDialogMsgsRefById(newDialog.id), { empty: true });
     set(getDialogRefById(newDialog.id), newDialog);
 };
+export const removeDialogWithFb = (dialogToRemove) => (dispatch) => {
+    set(getDialogMsgsRefById(dialogToRemove.id), { empty: false });
+    set(getDialogRefById(dialogToRemove.id), null);
+};
 
 export const setDialogs = (dialogs) => ({
     type: SET_DIALOGS,

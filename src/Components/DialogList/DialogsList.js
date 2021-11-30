@@ -9,6 +9,7 @@ import {
 import { selectDialogs } from "../../Store/Dialogs/selectors";
 import {DialogItem} from "../DialogItem/DialogItem";
 import './DialogList.scss';
+import {getDialogMsgsRefById, getDialogRefById} from "../../Services/firebase";
 
  export const DialogsList = () => {
      const dialogsList = useSelector(selectDialogs);
@@ -26,6 +27,8 @@ import './DialogList.scss';
          e.preventDefault();
          const newId = uuidv4();
          // dispatch(addDialog({ name: value, id: newId }));
+         // set(getDialogMsgsRefById(newId), {empty: true});
+         // set(getDialogRefById(newId), {name: value, id: newId})
          // setValue("");
          dispatch(addDialogWithFb({ name: value, id: newId }));
          setValue("");
