@@ -1,13 +1,36 @@
-import React from 'react'
-import './Home.scss'
-import {useSelector} from "react-redux";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { logIn } from "../../Services/firebase";
+import { SignForm } from "../SingForm/SingForm";
 
-export const Home = () =>{
-    const name = useSelector((state) => state.name);
-    return(
-    <>
-        <h3>HOME</h3>
-        <p>Hello {name}</p>
-    </>
-)
-}
+import "./Home.scss";
+
+export const Home = () => {
+    // const dispatch = useDispatch();
+    // const name = useSelector((state) => state.name);
+
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
+
+    const handleSignIn = async (email, pass) => {
+        setLoading(true);
+        try {
+            await logIn(email, pass);
+        } catch (err) {
+            console.log(err);
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return (
+        <>
+            <h3>HOME</h3>
+            {/* <h4>HELLO {name}</h4> */}
+            <SignForm onSubmit={handleSignIn} error={error} loading={loading} />
+            <Link to="/signup">Sign Up</Link>
+        </>
+    );
+};

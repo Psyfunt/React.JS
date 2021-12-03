@@ -17,7 +17,7 @@ export const messagesReducer = (state = initialMessages, { payload, type }) => {
             );
 
             return newMessages;
-        };
+        }
         case ADD_DIALOG:
             return {
                 ...state,
@@ -26,6 +26,7 @@ export const messagesReducer = (state = initialMessages, { payload, type }) => {
         case DELETE_DIALOG: {
             const newMessages = { ...state };
             delete newMessages[payload.dialogId];
+
             return newMessages;
         }
         default:

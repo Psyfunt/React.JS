@@ -5,23 +5,27 @@ import {DialogsList} from "../DialogList/DialogsList";
 import {Navigate, useParams} from "react-router-dom";
 import {MessagesList} from "../MessagesList/MessagesList";
 import { useDispatch, useSelector} from "react-redux";
-import {addMessageWithReply} from "../../Store/Messages/actions";
+import {addMessage} from "../../Store/Messages/actions";
 import {selectMessages} from "../../Store/Messages/selectors";
+import {getDialogMsgsListRefById} from "../../Services/firebase";
+import { push } from "firebase/database"
+import connect from "react-redux/lib/connect/connect";
 
 
-function Dialogs() {
+function Dialogs({msgs, sendMessage}) {
     const { dialogId } = useParams();
-    const messages = useSelector(selectMessages);
-    const dispatch = useDispatch();
+    // const messages = useSelector(selectMessages);
+    // const dispatch = useDispatch();
 
 
     const handleSetMessage = useCallback(
         (newMessage) => {
-        dispatch(addMessageWithReply(dialogId, newMessage))
-    },[dialogId, dispatch]);
+        // dispatch(addMessageWithReply(dialogId, newMessage))
+            push(getDialogMsgsListRefById(dialogId), newMessage);
+    },[dialogId, sendMessage]);
 
 
-    if (!messages[dialogId]) {
+    if (!msgs[dialogId]) {
         return <Navigate replace to="/dialogs" />;
     }
 
@@ -31,7 +35,7 @@ function Dialogs() {
                     <div className="App-wrapper">
                         <h1>Messenger</h1>
                         <div className='message-wrapper'>
-                            <MessagesList dialogId={dialogId}   messages={messages[dialogId]} />
+                            <MessagesList dialogId={dialogId}   messages={msgs[dialogId]} />
                         </div>
                         <Form  handleSetMessage={handleSetMessage}/>
                     </div>
@@ -42,15 +46,15 @@ function Dialogs() {
 
 export default Dialogs;
 
-// const mapStateToProps = (state) => ({
-//     messages: state.messages,
-// });
-//
-// const mapDispatchToProps = {
-//     setMessage: addMessage,
-// };
-//
-// export const ConnectedDialogs = connect(
-//     mapStateToProps,
-//     mapDispatchToProps
-// )(Dialogs);
+const mapStateToProps = (state) => ({
+    messages: state.messages,
+});
+
+const mapDispatchToProps = {
+    setMessage: addMessage,
+};
+
+export const ConnectedDialogs = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Dialogs);
