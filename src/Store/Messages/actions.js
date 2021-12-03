@@ -21,6 +21,7 @@ let timeout;
 
 export const addMessageWithReply = (dialogId, message) =>(dispatch) => {
     dispatch(addMessage(dialogId, message));
+
     if (message.author !== AUTHORS.bot){
         if (timeout){
             clearTimeout(timeout)
