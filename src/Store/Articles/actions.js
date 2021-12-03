@@ -12,27 +12,27 @@ export const getArticlesSuccess = (articles) => ({
     type: REQUEST_ARTICLES_SUCCESS,
     payload: articles,
 });
-export const getArticlesFailure = (err) => ({
+export const getArticlesFailure = (error) => ({
     type: REQUEST_ARTICLES_FAILURE,
-    payload: err,
+    payload: error,
 });
 
 export const getArticles = () => async (dispatch) => {
     dispatch(getArticlesLoading());
-
     try {
         const response = await fetch(apiUrl);
         console.log(response);
-
         if (!response.ok) {
-            throw new Error("Fail");
+            throw new Error("not ok");
         }
-
         const result = await response.json();
-
         dispatch(getArticlesSuccess(result));
     } catch (err) {
         console.warn(err);
         dispatch(getArticlesFailure(err.message));
     }
+};
+
+export const foo = () => {
+    throw new Error("newerr");
 };
